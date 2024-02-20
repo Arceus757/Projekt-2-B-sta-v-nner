@@ -2,7 +2,7 @@ from colors import bcolors
 
 __author__  = "Dmytro Malanchuk"
 __version__ = "1.0.0"
-__email__   = "namn.efternamn@elev.ga.ntig.se"
+__email__   = "dmytro.malanchuk@elev.ga.ntig.se"
 
 
 
@@ -24,12 +24,21 @@ def add_name(name_lista):
 
 # Ta bort ett namn från listan
 def remove_name(name_lista):
-    name = input("Ange vännen du vill ta bort: ")
-    if name in name_lista:
-        name_lista.remove(name)
-        print(f"{name} har tagits bort från listan.")
-    else:
-        print(f"{name} finns inte med i listan.")
+    print("Välj vilken vän du vill ta bort genom att ange dess nummer:")
+    for i, name in enumerate(name_lista):
+        print(f"{i+1}. {name}")
+    
+    try:
+        choice = int(input("Ange numret här: "))
+        if 1 <= choice <= len(name_lista):
+            removed_name = name_lista.pop(choice - 1)
+            print(f"{removed_name} har tagits bort från listan.")
+        else:
+            print("Ogiltigt val. Var snäll och ange ett nummer inom intervallet.")
+    except ValueError:
+        print("Ogiltigt val. Var snäll och ange ett heltal.")
+
+
 
 while True:
     print("******************")
